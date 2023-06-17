@@ -4,7 +4,7 @@
 
 ### Table of Contents
 1. Quick Start: How to Use This Repository
-2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/edit/v4/README.md#what-are-the-indicators-of-inclusive-prosperity)
+2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#what-are-the-indicators-of-inclusive-prosperity)
 3. Metholodgy Overview / Data Dictionary
 4. Additional Documentation
 
