@@ -22,17 +22,18 @@ median_household_income = 'S2503_C01_013E' # Estimate!!Occupied housing units!!O
 with_self_employment_income = 'B19053_002E' # Estimate!!Total:!!With self-employment income
 poverty_rate = 'S1701_C03_001E' # Estimate!!Percent below poverty level!!Population for whom poverty status is determined
 
-community_orgs_csv = r"C:\Users\Shawna\Documents\UF\Philanthropies\Github\program_input\2021 Duval NCCS Community Orgs Coordinates.csv"
+import os
+import pandas as pd
+community_orgs_csv = os.path.join(os.getcwd(), 'program_input', '2021 Duval NCCS Community Orgs Coordinates.csv')
 pop_centers = r"https://www2.census.gov/geo/docs/reference/cenpop2020/tract/CenPop2020_Mean_TR" + state_FIPS + ".txt"
 
-output_file_path = r"C:\Users\Shawna\Documents\UF\Philanthropies\Github\tableau_input\2021 Duval Indicators of Inclusive Prosperity - sample file.csv"
+output_file_path = os.path.join(os.getcwd(), 'tableau_input', '2021 Duval Indicators of Inclusive Prosperity - sample file.csv')
 
 
 '''EXTRACT, IMPORT, & CLEAN DATA''' 
 print('Getting your data...')
 
 import requests
-import pandas as pd
 import shapefile
 import numpy as np
 import math
