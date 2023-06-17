@@ -3,7 +3,7 @@
 - Based on findings of Acharya, R., & Morris, R. (2022). [*Reducing poverty without community displacement: Indicators of inclusive prosperity in U.S. neighborhoods. The Brookings Institution.*](https://www.brookings.edu/research/reducing-poverty-without-community-displacement-indicators-of-inclusive-prosperity-in-u-s-neighborhoods/)
 
 ### Table of Contents
-1. Quick Start: How to Use This Repository
+1. [Quick Start: How to Use This Repository](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#quick-start-how-to-use-this-repository)
 2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#what-are-the-indicators-of-inclusive-prosperity)
 3. Metholodgy Overview / Data Dictionary
 4. Additional Documentation
