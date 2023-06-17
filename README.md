@@ -4,7 +4,7 @@ Based on the findings of Acharya, R., & Morris, R. (2022). [*Reducing poverty wi
 ## Table of Contents
 1. [Quick Start: How to Use This Repository](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#quick-start-how-to-use-this-repository)
 2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#what-are-the-indicators-of-inclusive-prosperity)
-3. Metholodgy Overview / Data Dictionary
+3. Calculation Metholodgy / Data Dictionary
 4. How to Calculate the Indicators of Inclusive Prosperity for Your Community
 </br>
 
@@ -23,9 +23,22 @@ To open the output file, run
  start '2021 Duval Indicators of Inclusive Prosperity - sample file.csv'
 ```
 ## What Are the Indicators of Inclusive Prosperity?
-Through a 15 year study of over 3,500 US neighhborhoods, researchers have identified 8 indicators that differentiate neighborhoods that are most likely to experience large decreases in poverty rates and no community distplacement from other neighborhoods in concentrated poverty. By applying these findings, we can help community leaders assess need and identify interventions that will maximize the impact of their resources.
+Through a 15 year study of over 3,500 US neighhborhoods, Acharya and Morris identified 8 indicators that differentiate neighborhoods that are most likely to experience large decreases in poverty rates and no community distplacement from other neighborhoods in concentrated poverty. By applying these findings, we can help community leaders assess need and identify interventions that will maximize the impact of their resources.
 <div align="left">
   <img src="images/8_indicators.png" alt="Photo Not Available" width="600">
 </div>
 </br>
+
+## Calculation Methodology / Data Dictionary
+This methodology is based on the findings of the research study mentioned at the beginning of this file.  We have adapted the methodology to use only publicly available data.</br>
+| Indicator                | Type     | Criteria for each neighborhood                   | Source                                                                 |
+|:------------------------:|:--------:|:------------------------------------------------:|:----------------------------------------------------------------------:|
+| Positive Economic Growth | External | in an MSA that had positive GDP growth 2006-2021 | [US Bureau of Economic Analysis API](https://apps.bea.gov/api/signup/) |
+| Lower Homicide Rates     | External | in a county with < 25 murders per 100,000 residents | FL Department of Law Enforcement | 
+
+
+
+
+
+
 
