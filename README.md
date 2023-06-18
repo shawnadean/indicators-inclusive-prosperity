@@ -30,13 +30,32 @@ Through a 15 year study of over 3,500 US neighhborhoods, Acharya and Morris iden
 </br>
 
 ## Calculation Methodology / Data Dictionary
-This methodology is based on the findings of the research study mentioned at the beginning of this file.  We have adapted the methodology to use only publicly available data.</br>
-| Indicator                | Type     | Criteria for each neighborhood (census tract)                 | Source                                                                 |
-|:------------------------:|:--------:|:------------------------------------------------ |:----------------------------------------------------------------------:|
-| Positive Economic Growth | External | in a Metropolitan Statistical Area (MSA) that had positive GDP growth 2006-2021 | [US Bureau of Economic Analysis API](https://apps.bea.gov/api/signup/) |
-| Lower Homicide Rates     | External | in a county with < 25 murders per 100,000 residents | [FL Department of Law Enforcement](https://www.fdle.state.fl.us/CJAB/UCR/Annual-Reports/UCR-Annual-Archives) | Low Risk of Displacement* | External | Displacement Risk Ratio (Home Value/Median Household Income) < 75th percentile of the MSA | American Community Survey | Higher Rates of Home Ownership | Internal | Home Ownership Rate >= 25th percentile of the MSA | American Community Survey | Lower Residential Vacancy | Internal | Residential Vacancy Rate < 75th percentile of the MSA | American Community Survey | Increased Housing Density | Internal | # of Housing Units Built 2010-2019 > 0 | American Community Survey | Greater Self-Employment | Internal | Self-Employment Rate >= 25th percentile in the MSA | American Community Survey | Presence of COmmunity Organizations | Internal | has >=1 community-building organization located within 1 mile of the center of the census tract | National Center for Charitable Statistics, US Census Centers of Population |
+This methodology is based on the findings of the research study mentioned at the beginning of this file.  We have adapted the methodology to use only publicly available data for Duval County, FL in 2021.</br>
+### Criteria for determining the presence of each indicator
+| Indicator                | Type     | Criteria for each neighborhood (census tract)                 | Source                                                             |
+|:-------------------------|:---------|:--------------------------------------------------------------|:-------------------------------------------------------------------|
+| Positive Economic Growth | External | in a Metropolitan Statistical Area (MSA) that had positive GDP growth 2006-2021\** | [US Bureau of Economic Analysis API](https://apps.bea.gov/api/signup/) |
+| Lower Homicide Rates     | External | in a county with < 25 murders per 100,000 residents | [FL Department of Law Enforcement](https://www.fdle.state.fl.us/CJAB/UCR/Annual-Reports/UCR-Annual-Archives) | 
+Low Risk of Displacement* | External | Displacement Risk Ratio (Home Value\/Median Household Income) < 75th percentile of the MSA | [US Census Bureau: American Community Survey](https://www.census.gov/data/developers/data-sets/acs-5year.html) | 
+Higher Rates of Home Ownership | Internal | Home Ownership Rate >= 25th percentile of the MSA | " | 
+Lower Residential Vacancy | Internal | Residential Vacancy Rate < 75th percentile of the MSA | " | 
+Increased Housing Density | Internal | # of Housing Units Built 2010-2019\** > 0 | " | 
+Greater Self-Employment | Internal | Self-Employment Rate >= 25th percentile in the MSA | " | 
+Presence of Community Organizations | Internal | has >=1 community-building organization located within 1 mile of the center of the census tract | [National Center for Charitable Statistics](https://nccs-data.urban.org/data.php?ds=bmf), [US Census Bureau: Centers of Population](https://www.census.gov/geographies/reference-files/time-series/geo/centers-population.html) |
 
+\*The criteria for Low Risk of Displacement shown here differs greatly from Acharya and Morris' findings due to data limitations.  However, we are working on updating this in the next release. </br>
+\*\*These date ranges are based on their relative position to the reported year. For example, 2010-2019 was the closest data available to 10 years prior to the reported year. All other data is for the reported year or as close as possible.
+</br>
 
+### Criteria for determining the "Status" of Inclusive Prosperity
+When all 3 external indicators are present, the likelihood of a neighborhood achieving inclusive prosperity increases as the number of internal indicators present increases. 
+| # of External Indicators Present | # of Internal Indicators Present | Status of Inclusive Prosperity |
+|:---------------------------------|----------------------------------|--------------------------------|
+3 | >= 4 | Expected
+3 | 3 | Likely
+3 | 2 | Not Expected
+3 | 1 | Decline Likely
+<3 | Any # | Expected
 
 
 
