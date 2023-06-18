@@ -4,8 +4,8 @@ Based on the findings of Acharya, R., & Morris, R. (2022). [*Reducing poverty wi
 ## Table of Contents
 1. [Quick Start: How to Use This Repository](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#quick-start-how-to-use-this-repository)
 2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#what-are-the-indicators-of-inclusive-prosperity)
-3. Calculation Metholodgy / Data Dictionary
-4. How to Calculate the Indicators of Inclusive Prosperity for Your Community
+3. [Calculation Metholodgy / Data Dictionary](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#calculation-methodology--data-dictionary)
+4. How to Calculate the Indicators of Inclusive Prosperity for Your Community :sparkles: Coming Soon! :sparkles:
 </br>
 
 ## Quick Start: How to Use This Repository
@@ -33,7 +33,7 @@ Through a 15 year study of over 3,500 US neighhborhoods, Acharya and Morris iden
 This methodology is based on the findings of the research study mentioned at the beginning of this file.  We have adapted the methodology to use only publicly available data for Duval County, FL in 2021.</br>
 ### Criteria for determining the presence of each indicator
 | Indicator                | Type     | Criteria for each neighborhood (census tract)                 | Source                                                             |
-|:-------------------------|:---------|:--------------------------------------------------------------|:-------------------------------------------------------------------|
+|:-------------------------------------------------|:---------|:---------------------------------------------------------------------|:------------------------------------|
 | Positive Economic Growth | External | in a Metropolitan Statistical Area (MSA) that had positive GDP growth 2006-2021\** | [US Bureau of Economic Analysis API](https://apps.bea.gov/api/signup/) |
 | Lower Homicide Rates     | External | in a county with < 25 murders per 100,000 residents | [FL Department of Law Enforcement](https://www.fdle.state.fl.us/CJAB/UCR/Annual-Reports/UCR-Annual-Archives) | 
 Low Risk of Displacement* | External | Displacement Risk Ratio (Home Value\/Median Household Income) < 75th percentile of the MSA | [US Census Bureau: American Community Survey](https://www.census.gov/data/developers/data-sets/acs-5year.html) | 
