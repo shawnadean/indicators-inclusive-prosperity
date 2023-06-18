@@ -31,10 +31,12 @@ Through a 15 year study of over 3,500 US neighhborhoods, Acharya and Morris iden
 
 ## Calculation Methodology / Data Dictionary
 This methodology is based on the findings of the research study mentioned at the beginning of this file.  We have adapted the methodology to use only publicly available data.</br>
-| Indicator                | Type     | Criteria for each neighborhood                   | Source                                                                 |
-|:------------------------:|:--------:|:------------------------------------------------:|:----------------------------------------------------------------------:|
-| Positive Economic Growth | External | in an MSA that had positive GDP growth 2006-2021 | [US Bureau of Economic Analysis API](https://apps.bea.gov/api/signup/) |
-| Lower Homicide Rates     | External | in a county with < 25 murders per 100,000 residents | FL Department of Law Enforcement | 
+| Indicator                | Type     | Criteria for each neighborhood (census tract)                 | Source                                                                 |
+|:------------------------:|:--------:|:------------------------------------------------ |:----------------------------------------------------------------------:|
+| Positive Economic Growth | External | in a Metropolitan Statistical Area (MSA) that had positive GDP growth 2006-2021 | [US Bureau of Economic Analysis API](https://apps.bea.gov/api/signup/) |
+| Lower Homicide Rates     | External | in a county with < 25 murders per 100,000 residents | [FL Department of Law Enforcement](https://www.fdle.state.fl.us/CJAB/UCR/Annual-Reports/UCR-Annual-Archives) | Low Risk of Displacement* | External | Displacement Risk Ratio (Home Value/Median Household Income) < 75th percentile of the MSA | American Community Survey | Higher Rates of Home Ownership | Internal | Home Ownership Rate >= 25th percentile of the MSA | American Community Survey | Lower Residential Vacancy | Internal | Residential Vacancy Rate < 75th percentile of the MSA | American Community Survey | Increased Housing Density | Internal | # of Housing Units Built 2010-2019 > 0 | American Community Survey | Greater Self-Employment | Internal | Self-Employment Rate >= 25th percentile in the MSA | American Community Survey | Presence of COmmunity Organizations | Internal | has >=1 community-building organization located within 1 mile of the center of the census tract | National Center for Charitable Statistics, US Census Centers of Population |
+
+
 
 
 
