@@ -1,13 +1,44 @@
-import requests
+'''DEFINE INPUT VARIABLES - please update these to reflect your desired county/reporting year.
+
+See https://github.com/shawnadean/indicators-inclusive-prosperity/tree/master#readme
+for documentation/instructions. '''
+
+bea_UserID = '23913CE5-A976-471A-AC8C-7743C25F5053'
+CBSA_FIPS_code = '27260'
+endYear = 2021
+
+murders_per_100000 = 9.865032444
+
+state_FIPS = '12'
+county_fp_int = 31 
+county_MSA_FIPS = '003,019,031,089,109' 
+
+total_population = 'DP05_0001E' # Estimate!!SEX AND AGE!!Total population
+median_home_value = 'DP04_0089E' # Estimate!!VALUE!!Owner-occupied units!!Median (dollars)
+home_ownership_rate = 'DP04_0046PE' # Percent!!HOUSING TENURE!!Occupied housing units!!Owner-occupied
+vacancy_rate = 'DP04_0003PE' # Percent!!HOUSING OCCUPANCY!!Total housing units!!Vacant housing units
+built_prev_10 = 'DP04_0018E' # Estimate!!YEAR STRUCTURE BUILT!!Total housing units!!Built 2010 to 2019
+median_household_income = 'S2503_C01_013E' # Estimate!!Occupied housing units!!Occupied housing units!!HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2021 INFLATION-ADJUSTED DOLLARS)!!Median household income (dollars)
+with_self_employment_income = 'B19053_002E' # Estimate!!Total:!!With self-employment income
+poverty_rate = 'S1701_C03_001E' # Estimate!!Percent below poverty level!!Population for whom poverty status is determined
+
+import os
 import pandas as pd
+community_orgs_csv = os.path.join(os.getcwd(), 'program_input', '2021 Duval NCCS Community Orgs Coordinates.csv')
+pop_centers = r"https://www2.census.gov/geo/docs/reference/cenpop2020/tract/CenPop2020_Mean_TR" + state_FIPS + ".txt"
+
+output_file_path = os.path.join(os.getcwd(), 'tableau_input', '2021 Duval Indicators of Inclusive Prosperity - sample file.csv')
+
+
+'''EXTRACT, IMPORT, & CLEAN DATA''' 
+print('Getting your data...')
+
+import requests
 import shapefile
 import numpy as np
 import math
 
-# GDP Growth
-bea_UserID = '23913CE5-A976-471A-AC8C-7743C25F5053'
-CBSA_FIPS_code = '27260'
-
+# Calculate GDP Growth
 API_bea  = ('https://apps.bea.gov/api/data/?UserID=' + 
             bea_UserID +'&method=GetData&datasetname=Regional&TableName=CAGDP2&LineCode=1&GeoFIPS=' + 
             CBSA_FIPS_code + '%20&Year=ALL&ResultFormat=json')
@@ -27,8 +58,7 @@ df_gdp['DataValue'] = (df_gdp['DataValue']
                        .str.replace(',', '')
                        .astype(int))
 
-startYear = 2011
-endYear = 2021
+startYear = endYear - 15
 gdp_start = (df_gdp['DataValue']
              .loc[df_gdp['Year'] == startYear]
              .values[0])
@@ -39,12 +69,7 @@ gdp_end = (df_gdp['DataValue']
 
 gdp_growth = (gdp_end - gdp_start) / gdp_start
 
-
-# Murders per 100,000 
-murders_per_100000 = 9.865032444
-
-
-# ACS Tables
+# Extract data from Census American Community Survey API
 class ACS:
     def __init__(self, api):
         self.api = api
@@ -56,19 +81,7 @@ class ACS:
         return df
     
 endYear = str(endYear)
-state_FIPS = '12'
-county_fp_int = 31 # enter as int
 county_fp = str(county_fp_int).zfill(3)
-county_MSA_FIPS = '003,019,031,089,109' # all county fp codes in your MSA, must be 3 digits each
-
-total_population = 'DP05_0001E' # Estimate!!SEX AND AGE!!Total population
-median_home_value = 'DP04_0089E' # Estimate!!VALUE!!Owner-occupied units!!Median (dollars)
-home_ownership_rate = 'DP04_0046PE' # Percent!!HOUSING TENURE!!Occupied housing units!!Owner-occupied
-vacancy_rate = 'DP04_0003PE' # Percent!!HOUSING OCCUPANCY!!Total housing units!!Vacant housing units
-built_prev_10 = 'DP04_0018E' # Estimate!!YEAR STRUCTURE BUILT!!Total housing units!!Built 2010 to 2019
-median_household_income = 'S2503_C01_013E' # Estimate!!Occupied housing units!!Occupied housing units!!HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2021 INFLATION-ADJUSTED DOLLARS)!!Median household income (dollars)
-with_self_employment_income = 'B19053_002E' # Estimate!!Total:!!With self-employment income
-poverty_rate = 'S1701_C03_001E' # Estimate!!Percent below poverty level!!Population for whom poverty status is determined
 
 df_profile = ACS(r'https://api.census.gov/data/' + 
                  endYear + '/acs/acs5/profile?get=GEO_ID,' + 
@@ -128,6 +141,10 @@ df = df.loc[(df['Total Population'] != -666666666) &
             (df['Median Household Income'] != -666666666) &
             (df['Population w Self-Employment Income'] != -666666666)]
 
+
+'''TRANSFORM DATA'''
+print('Calculating metrics...')
+
 df['Displacement Risk Ratio'] = df['Median Home Value'] / df['Median Household Income']
 df['Home Ownership Rate'] = df['Home Ownership Rate'] / 100
 df['Vacancy Rate'] = df['Vacancy Rate'] / 100
@@ -142,7 +159,8 @@ self_emp_25perc = np.percentile(df['Self-Employment Rate'], 25)
 df = df[df['GEO_ID'].str.contains('1400000US' + state_FIPS + county_fp)]
 df = df.reset_index(drop=True)
 
-# Calculating Indicators
+# Calculate Indicators of Inclusive Prosperity
+print('Calculating Indicators of Inclusive Prosperity...', end = '\n\n')
 for index, row in df.iterrows():
     
     # Positive Economic Growth
@@ -189,11 +207,11 @@ for index, row in df.iterrows():
              
 
 # Presence of Community Organizations
-df_orgs = pd.DataFrame(pd.read_csv(r"C:\Users\Shawna\Documents\UF\Philanthropies\2021 Duval Community Orgs Geocodio.csv"), 
+df_orgs = pd.DataFrame(pd.read_csv(community_orgs_csv), 
                        columns=['NAME', 'Latitude','Longitude'])
 
 df_centers = (pd.DataFrame(
-    pd.read_csv(r"https://www2.census.gov/geo/docs/reference/cenpop2020/tract/CenPop2020_Mean_TR" + state_FIPS + ".txt"), 
+    pd.read_csv(pop_centers), 
     columns=['COUNTYFP','TRACTCE', 'LATITUDE','LONGITUDE']))
 
 df_centers = df_centers[(df_centers.COUNTYFP==county_fp_int)]
@@ -201,13 +219,10 @@ df_centers["TRACTCE"] = (df_centers["TRACTCE"].astype(str)).str.zfill(6)
 df_centers = df_centers.reset_index()
 df_comm_org = pd.DataFrame(columns=['TRACTCE', 'd','Presence of Community Organizations Present']) 
 
-
 for indexC, rowC in df_centers.iterrows():
-    #print(indexC, rowC['TRACTCE'])
     df_comm_org.at[indexC,'TRACTCE'] = rowC['TRACTCE']
     
     for indexO, rowO in df_orgs.iterrows():
-        #print(indexO, rowO['NAME'])
         orgsLat = rowO['Latitude']
         orgsLong = rowO['Longitude']
         
@@ -229,15 +244,12 @@ for indexC, rowC in df_centers.iterrows():
             df_comm_org.at[indexC,'Presence of Community Organizations Present'] = 0
             
     df_comm_org.at[indexC,'d'] = d
-    #print(indexC, df_comm_org.at[indexC,'TRACTCE'], df_comm_org.at[indexC,'d'], df_comm_org.at[indexC,'Presence of Community Organizations Present']) 
 
 df_comm_org['GEO_ID'] = "1400000US" + state_FIPS + county_fp + df_comm_org['TRACTCE']
 df_comm_org = pd.DataFrame(df_comm_org, columns=['GEO_ID', 'Presence of Community Organizations Present'])
-
 df = df.merge(df_comm_org, on='GEO_ID', how='left')
 
-# Output
-output_file_path = r'C:\Users\Shawna\Documents\UF\Philanthropies\Indicators 2021.csv'
+'''SAVE OUTPUT'''
 df.to_csv(output_file_path, index=False)
-# print(df.columns)
+print('Done! Your file has been saved to: ' + output_file_path)
 
