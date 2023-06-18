@@ -58,7 +58,7 @@ df_gdp['DataValue'] = (df_gdp['DataValue']
                        .str.replace(',', '')
                        .astype(int))
 
-startYear = endYear - 10
+startYear = endYear - 15
 gdp_start = (df_gdp['DataValue']
              .loc[df_gdp['Year'] == startYear]
              .values[0])
