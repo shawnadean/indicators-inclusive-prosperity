@@ -5,7 +5,7 @@ for documentation/instructions. '''
 
 bea_UserID = '23913CE5-A976-471A-AC8C-7743C25F5053'
 CBSA_FIPS_code = '27260'
-endYear = 2021
+reportedYear = 2021
 
 murders_per_100000 = 9.865032444
 
@@ -58,13 +58,13 @@ df_gdp['DataValue'] = (df_gdp['DataValue']
                        .str.replace(',', '')
                        .astype(int))
 
-startYear = endYear - 15
+startYear = reportedYear - 15
 gdp_start = (df_gdp['DataValue']
              .loc[df_gdp['Year'] == startYear]
              .values[0])
 
 gdp_end = (df_gdp['DataValue']
-           .loc[df_gdp['Year'] == endYear]
+           .loc[df_gdp['Year'] == reportedYear]
            .values[0])
 
 gdp_growth = (gdp_end - gdp_start) / gdp_start
@@ -80,11 +80,11 @@ class ACS:
         df = pd.DataFrame(columns=column_names, data=data[1:]).drop(['state','county','tract'], axis=1)
         return df
     
-endYear = str(endYear)
+reportedYear = str(reportedYear)
 county_fp = str(county_fp_int).zfill(3)
 
 df_profile = ACS(r'https://api.census.gov/data/' + 
-                 endYear + '/acs/acs5/profile?get=GEO_ID,' + 
+                 reportedYear + '/acs/acs5/profile?get=GEO_ID,' + 
                  total_population + ',' + 
                  median_home_value + ',' + 
                  home_ownership_rate + ',' + 
@@ -95,7 +95,7 @@ df_profile = ACS(r'https://api.census.gov/data/' +
             ).toDataFrame()
 
 df_subject = ACS(r'https://api.census.gov/data/' + 
-                 endYear + '/acs/acs5/subject?get=GEO_ID,' + 
+                 reportedYear + '/acs/acs5/subject?get=GEO_ID,' + 
                  median_household_income + ',' +
                  poverty_rate + '&for=tract:*&in=state:' + 
                  state_FIPS + '&in=county:' + 
@@ -103,7 +103,7 @@ df_subject = ACS(r'https://api.census.gov/data/' +
             ).toDataFrame()
 
 df_detail = ACS(r'https://api.census.gov/data/' + 
-                endYear + '/acs/acs5?get=GEO_ID,' + 
+                reportedYear + '/acs/acs5?get=GEO_ID,' + 
                 with_self_employment_income + '&for=tract:*&in=state:' + 
                 state_FIPS + '&in=county:' + 
                 county_MSA_FIPS
@@ -160,7 +160,7 @@ df = df[df['GEO_ID'].str.contains('1400000US' + state_FIPS + county_fp)]
 df = df.reset_index(drop=True)
 
 # Calculate Indicators of Inclusive Prosperity
-print('Calculating Indicators of Inclusive Prosperity...', end = '\n\n')
+print('Calculating Indicators of Inclusive Prosperity...')
 for index, row in df.iterrows():
     
     # Positive Economic Growth
@@ -244,12 +244,45 @@ for indexC, rowC in df_centers.iterrows():
             df_comm_org.at[indexC,'Presence of Community Organizations Present'] = 0
             
     df_comm_org.at[indexC,'d'] = d
-
+    
 df_comm_org['GEO_ID'] = "1400000US" + state_FIPS + county_fp + df_comm_org['TRACTCE']
 df_comm_org = pd.DataFrame(df_comm_org, columns=['GEO_ID', 'Presence of Community Organizations Present'])
 df = df.merge(df_comm_org, on='GEO_ID', how='left')
 
+
+print('Determining Status of Inclusive Prosperity...', end = '\n\n')
+for index, row in df.iterrows():
+    
+    if (row['Positive Economic Growth Present'] == 0) or (row['Lower Murder Rate Present'] == 0) or (row['Low Risk of Displacement Present'] == 0):
+        df.at[index, 'Status of Inclusive Prosperity'] = 0
+            
+    else:
+        total_internal_present = (row['Higher Rates of Home Ownership Present'] + 
+                                  row['Lower Residential Vacancy Present'] + 
+                                  row['Increased Housing Density Present'] + 
+                                  row['Greater Self-Employment Present'] + 
+                                  row['Presence of Community Organizations Present'])
+        
+        if total_internal_present == 0:
+            df.at[index, 'Status of Inclusive Prosperity'] = 1
+            
+        elif total_internal_present == 1:
+            df.at[index, 'Status of Inclusive Prosperity'] = 2
+            
+        elif total_internal_present == 2:
+            df.at[index, 'Status of Inclusive Prosperity'] = 3
+        
+        elif total_internal_present == 3:
+            df.at[index, 'Status of Inclusive Prosperity'] = 4
+            
+        elif total_internal_present >= 4:
+            df.at[index, 'Status of Inclusive Prosperity'] = 5
+            
+        else:
+            df.at[index, 'Status of Inclusive Prosperity'] = -666666666 #NULL
+            
+df['Status of Inclusive Prosperity'] = df['Status of Inclusive Prosperity'].astype(int)
+
 '''SAVE OUTPUT'''
 df.to_csv(output_file_path, index=False)
 print('Done! Your file has been saved to: ' + output_file_path)
-
