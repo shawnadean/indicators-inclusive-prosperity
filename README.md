@@ -58,8 +58,8 @@ When all 3 external indicators are present, the likelihood of a neighborhood ach
 <3 | Any # | Expected
 
 ### Glossary
-- Concentrated Poverty: census tracts with >=30% poverty rate and at least 1,000 residents per square mile
-- Inclusive Prosperity: >=10% drop in poverty rate & # of residents within each ethnic group (Asian, Black, Hispanic) will not decline by >5% & the decline, if any, of each ethnic group's % of the census tract's population will not be > 2 standard deviations from each group's mean % of population change among all US census tracts
+- **Concentrated Poverty:** census tracts with >=30% poverty rate and at least 1,000 residents per square mile
+- **Inclusive Prosperity:** >=10% drop in poverty rate & # of residents within each ethnic group (Asian, Black, Hispanic) will not decline by >5% & the decline, if any, of each ethnic group's % of the census tract's population will not be > 2 standard deviations from each group's mean % of population change among all US census tracts
 
 
 
