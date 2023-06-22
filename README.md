@@ -30,7 +30,8 @@ Through a 15 year study of over 3,500 US neighhborhoods, Acharya and Morris iden
 </br>
 
 ## Calculation Methodology / Data Dictionary
-This methodology is based on the findings of the research study mentioned at the beginning of this file.  We have adapted the methodology to use only publicly available data for Duval County, FL in 2021.</br>
+This methodology is based on the findings of the research study mentioned at the beginning of this file.  We have adapted the methodology to use only publicly available data for Duval County, FL in 2021.
+
 ### Criteria for determining the presence of each indicator
 | Indicator                | Type     | Criteria for each neighborhood (census tract)                 | Source                                                             |
 |:-------------------------------------------------|:---------|:---------------------------------------------------------------------|:------------------------------------|
@@ -46,7 +47,6 @@ Presence of Community Organizations | Internal | has >=1 community-building orga
 \*The criteria for Low Risk of Displacement shown here differs greatly from Acharya and Morris' findings due to data limitations.  However, we are working on updating this in the next release. </br>
 \*\*These date ranges are based on their relative position to the reported year. For example, 2010-2019 was the closest data available to 10 years prior to the reported year. All other data is for the reported year or as close as possible.
 </br>
-
 ### Criteria for determining the "Status" of Inclusive Prosperity
 When all 3 external indicators are present, the likelihood of a neighborhood achieving inclusive prosperity increases as the number of internal indicators present increases. 
 | # of External Indicators Present | # of Internal Indicators Present | Status of Inclusive Prosperity |
@@ -57,7 +57,9 @@ When all 3 external indicators are present, the likelihood of a neighborhood ach
 3 | 1 | Decline Likely
 <3 | Any # | Expected
 
-
+### Glossary
+- Concentrated Poverty: census tracts with >=30% poverty rate and at least 1,000 residents per square mile
+- Inclusive Prosperity: >=10% drop in poverty rate & # of residents within each ethnic group (Asian, Black, Hispanic) will not decline by >5% & the decline, if any, of each ethnic group's % of the census tract's population will not be > 2 standard deviations from each group's mean % of population change among all US census tracts
 
 
 
