@@ -6,7 +6,10 @@ Based on the findings of Acharya, R., & Morris, R. (2022). [*Reducing poverty wi
 2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#what-are-the-indicators-of-inclusive-prosperity)
 3. [Calculation Metholodgy / Data Dictionary](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#calculation-methodology--data-dictionary)
 4. [How to Calculate the Indicators of Inclusive Prosperity for Your Community](https://github.com/shawnadean/indicators-inclusive-prosperity/blob/v4/README.md#how-to-calculate-the-indicators-of-inclusive-prosperity-for-your-community)
-</br>
+
+<div align="left">
+  <img src="images/dashboard.png" alt="Photo Not Available" width="600">
+</div>
 
 ## Quick Start: How to Use This Repository
 With [git installed](https://github.com/git-guides/install-git), run the following commands:
