@@ -5,7 +5,7 @@ Based on the findings of Acharya, R., & Morris, R. (2022). [*Reducing poverty wi
 1. [Quick Start: How to Use This Repository](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#quick-start-how-to-use-this-repository)
 2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#what-are-the-indicators-of-inclusive-prosperity)
 3. [Calculation Metholodgy / Data Dictionary](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#calculation-methodology--data-dictionary)
-4. How to Calculate the Indicators of Inclusive Prosperity for Your Community
+4. [How to Calculate the Indicators of Inclusive Prosperity for Your Community](https://github.com/shawnadean/indicators-inclusive-prosperity/blob/v4/README.md#how-to-calculate-the-indicators-of-inclusive-prosperity-for-your-community)
 </br>
 
 ## Quick Start: How to Use This Repository
@@ -62,7 +62,7 @@ When all 3 external indicators are present, the likelihood of a neighborhood ach
 - Inclusive Prosperity: >=10% drop in poverty rate & # of residents within each ethnic group (Asian, Black, Hispanic) will not decline by >5% & the decline, if any, of each ethnic group's % of the census tract's population will not be > 2 standard deviations from each group's mean % of population change among all US census tracts
 </br>
 
-### How to Calculate the Indicators of Inclusive Prosperity for Your Community
+## How to Calculate the Indicators of Inclusive Prosperity for Your Community
 Complete [Quick Start: How to Use This Repository](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#quick-start-how-to-use-this-repository) first to ensure that you have properly downloaded this repo.
 
 #### Step 0: How to Navigate this Repository
@@ -70,7 +70,7 @@ Complete [Quick Start: How to Use This Repository](https://github.com/shawnadean
 - **program_input**: input file(s) required to run *calc_indicators_inclusive_prosperity.py*
 - **tableau_input**: files needed to build dashboard, includes *2021 Duval Indicators of Inclusive Prosperity - sample file.csv*, which is the output of *calc_indicators_inclusive_prosperity.py*
 - **calc_indicators_inclusive_prosperity.py**: python program that calculates the Indicators of Inclusive Prosperity and generates an Excel file for the results in the tableau_input file
-
+  
 #### Step 1: Create a List of Your County's Community Organizations
 1. Visit the [NCCS data archive](https://nccs-data.urban.org/data.php?ds=bmf) or browse the web for 'Urban Institute NCCS IRS BUSINESS MASTER FILES'. Download the most recent file for your desired reported year.
 
