@@ -130,6 +130,7 @@ On line 30, put a meaningful name for your results file.  See below for an examp
 </br>
 After running the .py file, your output file will be available in your inclusive-prosperity\tableau_input folder.
 
-#### Step 4: Build Your Tableau Dashboard
+#### Step 4: Start Building Your Tableau Dashboard
+1. Download the appropriate shape files for your state and reported year from the [Census Tiger/Line Shapefiles download page](https://www.census.gov/cgi-bin/geo/shapefiles/index.php). You can find Florida's 2021 shapefiles in tableau_input in this repo.
 
-
+2. 
