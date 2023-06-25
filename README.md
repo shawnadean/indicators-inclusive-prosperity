@@ -5,7 +5,7 @@ Based on the findings of Acharya, R., & Morris, R. (2022). [*Reducing poverty wi
 1. [Quick Start: How to Use This Repository](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#quick-start-how-to-use-this-repository)
 2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#what-are-the-indicators-of-inclusive-prosperity)
 3. [Calculation Metholodgy / Data Dictionary](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#calculation-methodology--data-dictionary)
-4. How to Calculate the Indicators of Inclusive Prosperity for Your Community :sparkles:Coming Soon!:sparkles:
+4. How to Calculate the Indicators of Inclusive Prosperity for Your Community
 </br>
 
 ## Quick Start: How to Use This Repository
@@ -125,9 +125,8 @@ The following variable constants contain the names for variables accessed throug
 On line 30, put a meaningful name for your results file.  See below for an example: </br>
 ```output_file_path = os.path.join(os.getcwd(), 'tableau_input', 'Name of Your Output File.csv')```
 </br>
-The file will be available in your inclusive-prosperity\tableau_input folder.
+After running the .py file, your output file will be available in your inclusive-prosperity\tableau_input folder.
 
 #### Step 4: Build Your Tableau Dashboard
-
 
 
