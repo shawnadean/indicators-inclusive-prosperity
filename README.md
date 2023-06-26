@@ -63,6 +63,9 @@ When all 3 external indicators are present, the likelihood of a neighborhood ach
 ### Glossary
 - Concentrated Poverty: census tracts with >=30% poverty rate and at least 1,000 residents per square mile
 - Inclusive Prosperity: >=10% drop in poverty rate & # of residents within each ethnic group (Asian, Black, Hispanic) will not decline by >5% & the decline, if any, of each ethnic group's % of the census tract's population will not be > 2 standard deviations from each group's mean % of population change among all US census tracts
+
+[Back to the Top](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#table-of-contents)
+
 </br>
 
 ## How to Calculate the Indicators of Inclusive Prosperity for Your Community
@@ -138,3 +141,5 @@ After running the .py file, your output file will be available in your inclusive
 3. Create a calculated column to identify census tracts in Concentrated Poverty using the calculation ```IF [Poverty Rate]>=0.30 AND [Population]/([ALAND]/2589988) >=1000 THEN "Yes" ELSE "No" END```. The Indicators of Inclusive Prosperity only apply to census tracts in Concentrated Poverty, so you can filter your visual to only these census tracts.
 
 4. Build and stylize your dashboard as you wish.  You can download [our team's dashboard](https://public.tableau.com/app/profile/shawna.dean7959/viz/StatusofInclusiveProsperity2021/StatusofInclusiveProsperity) to use as an example.
+
+[Back to the Top](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#table-of-contents)
