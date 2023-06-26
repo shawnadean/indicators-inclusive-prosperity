@@ -133,4 +133,8 @@ After running the .py file, your output file will be available in your inclusive
 #### Step 4: Start Building Your Tableau Dashboard
 1. Download the appropriate shape files for your state and reported year from the [Census Tiger/Line Shapefiles download page](https://www.census.gov/cgi-bin/geo/shapefiles/index.php). You can find Florida's 2021 shapefiles in tableau_input in this repo.
 
-2. 
+2. In Tableau, upload the csv output file that you generated in Step 3.  Upload the entire folder that you downloaded in Step 4.1 and create an Inner Join between these two files using a calculated join on the shapefile side so that the output file's ```GEO_ID``` column = ```"1400000US" + Geoid``` where Geoid is a column from the shapefile datasource.
+
+3. Create a calculated column to identify census tracts in Concentrated Poverty using the calculation ```IF [Poverty Rate]>=0.30 AND [Population]/([ALAND]/2589988) >=1000 THEN "Yes" ELSE "No" END```. The Indicators of Inclusive Prosperity only apply to census tracts in Concentrated Poverty, so you can filter your visual to only these census tracts.
+
+4. Build and stylize your dashboard as you wish.  You can download [our team's dashboard](https://public.tableau.com/app/profile/shawna.dean7959/viz/StatusofInclusiveProsperity2021/StatusofInclusiveProsperity) to use as an example.
