@@ -1,12 +1,15 @@
-# :house_with_garden: Reducing Poverty without Community Displacement: "Calculating Indicators of Inclusive Prosperity"
+# :house_with_garden: Reducing Poverty without Community Displacement: "Calculating" Indicators of Inclusive Prosperity
 Based on the findings of Acharya, R., & Morris, R. (2022). [*Reducing poverty without community displacement: Indicators of inclusive prosperity in U.S. neighborhoods. The Brookings Institution.*](https://www.brookings.edu/research/reducing-poverty-without-community-displacement-indicators-of-inclusive-prosperity-in-u-s-neighborhoods/)
 
 ## Table of Contents
 1. [Quick Start: How to Use This Repository](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#quick-start-how-to-use-this-repository)
 2. [What Are Indicators of Inclusive Prosperity?](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#what-are-the-indicators-of-inclusive-prosperity)
 3. [Calculation Metholodgy / Data Dictionary](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#calculation-methodology--data-dictionary)
-4. How to Calculate the Indicators of Inclusive Prosperity for Your Community :sparkles:Coming Soon!:sparkles:
-</br>
+4. [How to Calculate the Indicators of Inclusive Prosperity for Your Community](https://github.com/shawnadean/indicators-inclusive-prosperity/blob/v4/README.md#how-to-calculate-the-indicators-of-inclusive-prosperity-for-your-community)
+
+<div align="left">
+  <img src="images/dashboard.png" alt="Photo Not Available" width="600">
+</div>
 
 ## Quick Start: How to Use This Repository
 With [git installed](https://github.com/git-guides/install-git), run the following commands:
@@ -61,7 +64,82 @@ When all 3 external indicators are present, the likelihood of a neighborhood ach
 - **Concentrated Poverty:** census tracts with >=30% poverty rate and at least 1,000 residents per square mile
 - **Inclusive Prosperity:** >=10% drop in poverty rate & # of residents within each ethnic group (Asian, Black, Hispanic) will not decline by >5% & the decline, if any, of each ethnic group's % of the census tract's population will not be > 2 standard deviations from each group's mean % of population change among all US census tracts
 
+[Back to the Top](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#table-of-contents)
+
+</br>
+
+## How to Calculate the Indicators of Inclusive Prosperity for Your Community
+Complete [Quick Start: How to Use This Repository](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#quick-start-how-to-use-this-repository) first to ensure that you have properly downloaded this repo.
+
+#### Step 0: How to Navigate this Repository
+- **images**: images used in this README.md
+- **program_input**: input file(s) required to run *calc_indicators_inclusive_prosperity.py*
+- **tableau_input**: files needed to build dashboard, includes *2021 Duval Indicators of Inclusive Prosperity - sample file.csv*, which is the output of *calc_indicators_inclusive_prosperity.py*
+- **calc_indicators_inclusive_prosperity.py**: python program that calculates the Indicators of Inclusive Prosperity and generates an Excel file for the results in the tableau_input file
+  
+#### Step 1: Create a List of Your County's Community Organizations
+1. Visit the [NCCS data archive](https://nccs-data.urban.org/data.php?ds=bmf) or browse the web for 'Urban Institute NCCS IRS BUSINESS MASTER FILES'. Download the most recent file for your desired reported year.
+
+2. Open a new blank Excel file.  In Excel, create a query to the file that you just downloaded via Data > Get & Transform Data > Get Data > From File > From Excel Workbook and select your NCCS file.
+
+3. In Excel Power Query, filter rows by your desired county.  Filter the columned named NTEE1 to only include R, S, T, W, V. Remove all columns except Organization Name, NTEE1, Full Address, and any other geographic information.  
+
+4. Save your file and use the Full Address column to generate coordinates for all of the organizations in your file.  We used [geocod.io](https://www.geocod.io/), which offers 2,500 free lookups per day. However, you can use any batch process geocoding service.
+   
+6. Download your geocoded file, give it a meaningful name, and save it to your local program_input file as a csv.  Open the file and make sure that the column headers match those seen in program_input\2021 Duval NCCS Community Orgs Coordinates.csv
+
+7. Open *calc_indicators_inclusive_prosperity.py*. Change line 27 to reflect the name of your geocoded file. See below for an example:
+```
+community_orgs_csv = os.path.join(os.getcwd(), 'program_input', 'Your Geocoded File Name.csv')
+```
+8. Save the .py file.
+
+#### Step 2: Update Your Input Variables
+You will need to update the variable constants in lines 6-30 in *calc_indicators_inclusive_prosperity.py* to customize this program to your desired county and reported year.  Use the table below to learn what these variables represent:
+
+| Variable Name | Data Type | Description |
+|----------------------------------|----------------------------------|--------------------------------|
+```bea_UserID``` | string | your unique UserID that allows you to access the Bureau of Labor Statistics API;  [Register to use the BEA API here](https://apps.bea.gov/api/signup/) and you will receive your UserID via email.
+```CBSA_FIPS_code``` | string | the FIPS (Federal Information Processing Standards) code for the CBSA (Core-based Statistical Area) which your county is located in;  FIPS codes can change occasionally, so make sure any FIPS codes you use are accurate as of your reported year.
+```reportedYear``` | int | the year for which you would like to calculate the Indicators of Inclusive Prosperity, usually the year of the most recent census data
+```murders_per_100000``` | float | # of murders per 100,000 residents in your county's MSA (Metropolitan Statistical Area) as defined by ((Total # of Murders in MSA) / (Total # of People in MSA)) * 100,000; Your data source might differ as crime reporting differs from state to state.  We used the most recent [County and Municipal Offense Data from the Florida Department of Law Enforcement](https://www.fdle.state.fl.us/CJAB/UCR/Annual-Reports/UCR-Annual-Archives).
+```state_FIPS``` | string | the FIPS code for the state that your county is located in
+```county_fp_int``` | int | the FIPS code for your county
+```county_MSA_FIPS``` | string | an unordered list of the FIPS codes for all the counties located within your reported county's MSA; All codes should be exactly 3 digits, including leading 0s
+</br>
+The following variable constants contain the names for variables accessed through the US Census Bureau API for the American Community Survey.  These names can change every few years, meaning that the name that points to one variable in a given year might point to a different variable in another year. For each variable constant, use the associated link (change the year to your reported year) to ensure that the name matches the appropriate label: 
+</br>
+</br>
+
+| Variable Constant | Link | Label |
+|----------------------------------|----------------------------------|--------------------------------|
+```total_population``` | https://api.census.gov/data/2021/acs/acs5/profile/groups/DP05.html | Estimate!!SEX AND AGE!!Total population |
+```median_home_value``` | https://api.census.gov/data/2021/acs/acs5/profile/groups/DP04.html | Estimate!!VALUE!!Owner-occupied units!!Median (dollars) |
+```home_ownership_rate``` |"| Percent!!HOUSING TENURE!!Occupied housing units!!Owner-occupied |
+```vacancy_rate``` |"| Percent!!HOUSING OCCUPANCY!!Total housing units!!Vacant housing units |
+```built_prev_10``` |"| Estimate!!YEAR STRUCTURE BUILT!!Total housing units!!Built 2010 to 2019* |
+```median_household_income``` | https://api.census.gov/data/2021/acs/acs5/subject/groups/S2503.html | Estimate!!Occupied housing units!!Occupied housing units!!HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2021** INFLATION-ADJUSTED DOLLARS)!!Median household income (dollars) |
+```with_self_employment_income``` | https://api.census.gov/data/2021/acs/acs5/groups/B19053.html | Estimate!!Total:!!With self-employment income |
+```poverty_rate``` | https://api.census.gov/data/2021/acs/acs5/subject/groups/S1701.html | Estimate!!Percent below poverty level!!Population for whom poverty status is determined |
 
 
+*This variable should reflect the total housing units built 10 years prior to your reported year. </br>
+**This variable should reflect median household income for you reported year.
 
 
+#### Step 3: Change Your Output File Name & Run the File
+On line 30, put a meaningful name for your results file.  See below for an example: </br>
+```output_file_path = os.path.join(os.getcwd(), 'tableau_input', 'Name of Your Output File.csv')```
+</br>
+After running the .py file, your output file will be available in your inclusive-prosperity\tableau_input folder.
+
+#### Step 4: Start Building Your Tableau Dashboard
+1. Download the appropriate shape files for your state and reported year from the [Census Tiger/Line Shapefiles download page](https://www.census.gov/cgi-bin/geo/shapefiles/index.php). You can find Florida's 2021 shapefiles in tableau_input in this repo.
+
+2. In Tableau, upload the csv output file that you generated in Step 3.  Upload the entire folder that you downloaded in Step 4.1 and create an Inner Join between these two files using a calculated join on the shapefile side so that the output file's ```GEO_ID``` column = ```"1400000US" + Geoid``` where Geoid is a column from the shapefile datasource.
+
+3. Create a calculated column to identify census tracts in Concentrated Poverty using the calculation ```IF [Poverty Rate]>=0.30 AND [Population]/([ALAND]/2589988) >=1000 THEN "Yes" ELSE "No" END```. The Indicators of Inclusive Prosperity only apply to census tracts in Concentrated Poverty, so you can filter your visual to only these census tracts.
+
+4. Build and stylize your dashboard as you wish.  You can download [our team's dashboard](https://public.tableau.com/app/profile/shawna.dean7959/viz/StatusofInclusiveProsperity2021/StatusofInclusiveProsperity) to use as an example.
+
+[Back to the Top](https://github.com/shawnadean/indicators-inclusive-prosperity/tree/v4#table-of-contents)

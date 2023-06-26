@@ -1,7 +1,7 @@
 '''DEFINE INPUT VARIABLES - please update these to reflect your desired county/reporting year.
 
 See https://github.com/shawnadean/indicators-inclusive-prosperity/tree/master#readme
-for documentation/instructions. '''
+for documentation and instructions. '''
 
 bea_UserID = '23913CE5-A976-471A-AC8C-7743C25F5053'
 CBSA_FIPS_code = '27260'
@@ -13,14 +13,14 @@ state_FIPS = '12'
 county_fp_int = 31 
 county_MSA_FIPS = '003,019,031,089,109' 
 
-total_population = 'DP05_0001E' # Estimate!!SEX AND AGE!!Total population
-median_home_value = 'DP04_0089E' # Estimate!!VALUE!!Owner-occupied units!!Median (dollars)
-home_ownership_rate = 'DP04_0046PE' # Percent!!HOUSING TENURE!!Occupied housing units!!Owner-occupied
-vacancy_rate = 'DP04_0003PE' # Percent!!HOUSING OCCUPANCY!!Total housing units!!Vacant housing units
-built_prev_10 = 'DP04_0018E' # Estimate!!YEAR STRUCTURE BUILT!!Total housing units!!Built 2010 to 2019
-median_household_income = 'S2503_C01_013E' # Estimate!!Occupied housing units!!Occupied housing units!!HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2021 INFLATION-ADJUSTED DOLLARS)!!Median household income (dollars)
-with_self_employment_income = 'B19053_002E' # Estimate!!Total:!!With self-employment income
-poverty_rate = 'S1701_C03_001E' # Estimate!!Percent below poverty level!!Population for whom poverty status is determined
+total_population = 'DP05_0001E' 
+median_home_value = 'DP04_0089E' 
+home_ownership_rate = 'DP04_0046PE' 
+vacancy_rate = 'DP04_0003PE' 
+built_prev_10 = 'DP04_0018E' 
+median_household_income = 'S2503_C01_013E' 
+with_self_employment_income = 'B19053_002E' 
+poverty_rate = 'S1701_C03_001E' 
 
 import os
 import pandas as pd
