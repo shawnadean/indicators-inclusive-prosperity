@@ -54,11 +54,11 @@ Presence of Community Organizations | Internal | has >=1 community-building orga
 When all 3 external indicators are present, the likelihood of a neighborhood achieving inclusive prosperity increases as the number of internal indicators present increases. 
 | # of External Indicators Present | # of Internal Indicators Present | Status of Inclusive Prosperity |
 |:---------------------------------|----------------------------------|--------------------------------|
-3 | >= 4 | Expected
-3 | 3 | Likely
-3 | 2 | Not Expected
-3 | 1 | Decline Likely
-<3 | Any # | Expected
+3 | >= 4 | Achievement of Inclusive Prosperity Expected
+3 | 3 | "" Likely
+3 | 2 | "" Not Expected
+3 | 1 | Decline of Inclusive Prosperity Likely
+<3 | Any # | Decline "" Expected
 
 ### Glossary
 - **Concentrated Poverty:** census tracts with >=30% poverty rate and at least 1,000 residents per square mile
