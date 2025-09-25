@@ -47,7 +47,7 @@ Increased Housing Density | Internal | # of Housing Units Built 2010-2019\** > 0
 Greater Self-Employment | Internal | Self-Employment Rate >= 25th percentile in the MSA | " | 
 Presence of Community Organizations | Internal | has >=1 community-building organization located within 1 mile of the center of the census tract | [National Center for Charitable Statistics](https://nccs-data.urban.org/data.php?ds=bmf), [US Census Bureau: Centers of Population](https://www.census.gov/geographies/reference-files/time-series/geo/centers-population.html) |
 
-\*The criteria for Low Risk of Displacement shown here differs greatly from Acharya and Morris' findings due to data limitations.  However, we are working on updating this in the next release. </br>
+\*The criteria for Low Risk of Displacement shown here differs greatly from Acharya and Morris' findings due to data limitations. </br>
 \*\*These date ranges are based on their relative position to the reported year. For example, 2010-2019 was the closest data available to 10 years prior to the reported year. All other data is for the reported year or as close as possible.
 </br>
 ### Criteria for determining the "Status" of Inclusive Prosperity
